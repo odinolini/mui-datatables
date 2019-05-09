@@ -18,6 +18,7 @@ import isUndefined from 'lodash.isundefined';
 import textLabels from './textLabels';
 import { withStyles } from '@material-ui/core/styles';
 import { buildMap, getCollatorComparator, sortCompare } from './utils';
+import ls from 'local-storage';
 
 const defaultTableStyles = {
   root: {},
@@ -643,6 +644,7 @@ class MUIDataTable extends React.Component {
     this.setState(
       prevState => {
         const columns = cloneDeep(prevState.columns);
+        ls('columns', columns);
         columns[index].display = columns[index].display === 'true' ? 'false' : 'true';
         return {
           columns: columns,
